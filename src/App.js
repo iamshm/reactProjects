@@ -1,10 +1,15 @@
-import React from "react";
+import Header from "components/Layout/Header";
+import Meals from "components/Meals/Meals";
+import React, { Fragment } from "react";
 
 const App = () => {
   return (
-    <div>
-      <h2>hell</h2>
-    </div>
+    <Fragment>
+      <Header />
+      <main>
+        <Meals />
+      </main>
+    </Fragment>
   );
 };
 
