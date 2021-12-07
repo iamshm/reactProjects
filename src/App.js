@@ -2,40 +2,28 @@ import React, { Fragment, useEffect, useState } from "react";
 
 import NewTask from "components/NewTask/NewTask";
 import Tasks from "components/Tasks/Tasks";
+import useHttp from "hooks/use-http";
 const App = () => {
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(false);
   const [tasks, setTasks] = useState([]);
-
-  const fetchTasks = async () => {
-    setIsLoading(true);
-    setError(null);
-    try {
-      const res = await fetch(
-        "https://react-http-bd594-default-rtdb.firebaseio.com/tasks.json"
-      );
-      if (!res.ok) {
-        throw new Error("Request Failed");
-      }
-
-      const data = await res.json();
-      console.log("data", data);
-      const loadedTasks = [];
-
-      for (const i in data) {
-        loadedTasks.push({ id: i, text: data[i].text });
-      }
-      console.log("loaddTasks", loadedTasks);
-      setTasks(loadedTasks);
-    } catch (error) {
-      setError(error.message || "Something went wrong");
-    }
-    setIsLoading(false);
-  };
+  const { isLoading, error, sendRequest: fetchTasks } = useHttp();
 
   useEffect(() => {
-    fetchTasks();
-  }, []);
+    const transformTasks = (taskObj) => {
+      const loadedTasks = [];
+
+      for (const i in taskObj) {
+        loadedTasks.push({ id: i, text: taskObj[i].text });
+      }
+      setTasks(loadedTasks);
+    };
+
+    fetchTasks(
+      {
+        url: "https://react-http-bd594-default-rtdb.firebaseio.com/tasks.json",
+      },
+      transformTasks
+    );
+  }, [fetchTasks]);
 
   const taskAddHandler = (task) => {
     setTasks((prevTasks) => prevTasks.concat(task));
