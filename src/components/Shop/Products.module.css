@@ -1,4 +1,5 @@
-.products h2 {
+.products h2,
+.loading {
   color: white;
   margin: 2rem auto;
   text-align: center;
@@ -9,4 +10,13 @@
   list-style: none;
   margin: 0;
   padding: 0;
+}
+.loading {
+  font-style: italic;
+  text-transform: none;
+}
+.error {
+  color: red;
+  margin: 2rem auto;
+  text-align: center;
 }
