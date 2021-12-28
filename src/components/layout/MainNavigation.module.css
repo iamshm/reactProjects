@@ -1,0 +1,65 @@
+.header {
+  width: 100%;
+  height: 5rem;
+  display: flex;
+  padding: 0 10%;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #6237a0;
+}
+
+.logo {
+  font-size: 2rem;
+  color: white;
+}
+.toggleDiv {
+  height: 40px;
+  width: 40px;
+  border: none;
+  border-radius: 50%;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all ease 2ms;
+}
+.toggleDiv :hover {
+  transform: scale(1.12);
+}
+.toggleBtn {
+  height: 40px;
+  width: 40px;
+  border: none;
+  border-radius: 50%;
+  text-decoration: none;
+  cursor: pointer;
+}
+.toggleBtn :hover {
+  height: 50px;
+  width: 50px;
+}
+.toggleText :hover {
+  transform: scale(1.5);
+}
+
+.nav ul {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+}
+
+.nav li {
+  margin-left: 1.5rem;
+  font-size: 1.25rem;
+}
+
+.nav a {
+  text-decoration: none;
+  color: #28104e;
+}
+
+.nav a:hover,
+.nav a:active,
+.nav a.active {
+  color: rgb(233, 233, 233);
+}

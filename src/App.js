@@ -1,25 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import Layout from "components/layout/Layout";
+import AllQuotes from "pages/AllQuotes";
+import NewQuote from "pages/NewQuote";
+import QuoteDetail from "pages/QuoteDetail";
+import { useContext } from "react";
+import { Switch, Route, Redirect } from "react-router-dom";
+import AppContext from "store/context";
 
-function App() {
+export default function App() {
+  const { darkMode } = useContext(AppContext);
+
+  const mode = darkMode ? "dark" : "light";
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={`${mode} bg`}>
+      <Layout>
+        <Switch>
+          <Route path="/" exact>
+            <Redirect to="/quotes" />
+          </Route>
+          <Route path="/quotes" exact>
+            <AllQuotes />
+          </Route>
+          <Route path="/quotes/:quoteId">
+            <QuoteDetail />
+          </Route>
+          <Route path="/new-quote">
+            <NewQuote />
+          </Route>
+        </Switch>
+      </Layout>
     </div>
   );
 }
-
-export default App;
